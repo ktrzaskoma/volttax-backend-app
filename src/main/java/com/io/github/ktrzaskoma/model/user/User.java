@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "user_volttax")
+@Table(name = "users")
 public class User {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +29,7 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
 
     @OneToMany(mappedBy = "user", orphanRemoval = true)
     private Set<Location> locations;
@@ -88,7 +89,10 @@ public class User {
     public String getPassword() {
         return password;
     }
+
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 }

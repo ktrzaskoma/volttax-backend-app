@@ -12,9 +12,9 @@ public class MeterStatusService {
         double taxPayment = 23;
 
         double finalRes = measurementToInt * kiloWattPerHourPayment * (1 + taxPayment / 100);
-        String measurementAfterCalculate = String.format("%.2f", finalRes);
 
-        return measurementAfterCalculate;
+        String str = Double.toString(finalRes);
+        return str;
 
     }
 

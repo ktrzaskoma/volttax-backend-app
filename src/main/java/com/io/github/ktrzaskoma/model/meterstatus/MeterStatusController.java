@@ -47,18 +47,19 @@ public class MeterStatusController {
         return ResponseEntity.created(URI.create("/" + meterStatus)).body(meterStatus);
     }
 
-    @PutMapping ("/meter/status/{id}")
-    ResponseEntity<?> updateTaxToPay(@PathVariable Integer id,
-                                     @RequestBody @Valid MeterStatus toUpdate) {
-        if (!meterStatusRepository.existsById(id)) {
-            return ResponseEntity.notFound().build();
-        }
-        meterStatusRepository.findById(id)
-                .ifPresent(status -> {
-                    status.updateMeterStatus(toUpdate);
-                    meterStatusRepository.save(status);
-                });
-        return ResponseEntity.noContent().build();
+//    na wyjsciu po zmianie pojawia się "null"
 
-    }
+//    @PutMapping ("/meter/status/{id}")
+//    ResponseEntity<?> updateTaxToPay(@PathVariable Integer id,
+//                                     @RequestBody @Valid MeterStatus toUpdate) {
+//        if (!meterStatusRepository.existsById(id)) {
+//            return ResponseEntity.notFound().build();
+//        }
+//        meterStatusRepository.findById(id)
+//                .ifPresent(status -> {
+//                    status.updateMeterStatus(toUpdate);
+//                    meterStatusRepository.save(status);
+//                });
+//        return ResponseEntity.noContent().build();
+//    }
 }

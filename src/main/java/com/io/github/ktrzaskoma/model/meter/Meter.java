@@ -14,7 +14,7 @@ public class Meter {
     @Column(name = "meter_id")
     private Integer id;
 
-    @Column(name = "meterNumber")
+    @Column(name = "METER_NUMBER")
     private Integer meterNumber;
 
     @OneToOne

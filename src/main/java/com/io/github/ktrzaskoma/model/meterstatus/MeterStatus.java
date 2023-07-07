@@ -6,6 +6,7 @@ import com.io.github.ktrzaskoma.model.meter.Meter;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "meter_statuses")
 public class MeterStatus {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +17,7 @@ public class MeterStatus {
     @Column(name = "measurement")
     private String measurement;
 
-    @Column(name = "taxToPay")
+    @Column(name = "tax_to_pay")
     private String taxToPay;
 
     @ManyToOne

@@ -5,10 +5,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MeterStatusRepository extends JpaRepository<MeterStatus, Integer> {
-
-
-
-
-
-
 }

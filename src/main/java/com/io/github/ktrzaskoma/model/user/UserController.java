@@ -1,10 +1,14 @@
 package com.io.github.ktrzaskoma.model.user;
 
+import com.io.github.ktrzaskoma.dtos.user.UserReadModel;
+import com.io.github.ktrzaskoma.dtos.user.UserWriteModel;
+import com.io.github.ktrzaskoma.service.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -14,24 +18,25 @@ public class UserController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
-    public UserController(UserRepository userRepository) {
-        this.userRepository = userRepository;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @GetMapping
-    ResponseEntity<List<User>> readAllUsers() {
+    List<UserReadModel> readAllUsers() {
         LOGGER.warn("Exposing all users");
-        return ResponseEntity.ok(userRepository.findAll());
+        return userService.showAllUsers();
     }
 
-    // TODO: implementing read- and write- model to project
 
     @PostMapping
-    ResponseEntity<User> createLocation (@RequestBody User toCreate) {
-        User user = userRepository.save(toCreate);
-        return ResponseEntity.created(URI.create("/" + user.getId())).body(user);
+    ResponseEntity<?> createLocation (@RequestBody @Valid UserWriteModel userWriteModel) {
+        UserReadModel user =  userService.saveUser(userWriteModel);
+       return ResponseEntity.created(URI.create("/" + user.getId())).build();
     }
+
 
 }
